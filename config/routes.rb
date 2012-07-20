@@ -14,6 +14,9 @@ PeerPressure::Application.routes.draw do
   match 'login/logout'       => 'login#logout',       :as => :logout
 
   root :to                   => 'home#index'
+  
+  match 'webhooks/:action', :controller => 'webhooks'
+  match 'webhooks/order/create' => 'webhooks#order_created'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

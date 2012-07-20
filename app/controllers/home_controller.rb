@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-  
   around_filter :shopify_session, :except => 'welcome'
   
   def welcome
@@ -8,11 +7,19 @@ class HomeController < ApplicationController
   end
   
   def index
-    # get 5 products
-    @products = ShopifyAPI::Product.find(:all, :params => {:limit => 10})
-
-    # get latest 5 orders
-    @orders   = ShopifyAPI::Order.find(:all, :params => {:limit => 5, :order => "created_at DESC" })
+    unless current_shop_present?
+      Shop.create(
+        domain: current_shop.myshopify_domain,
+        name: current_shop.name,
+        owner: current_shop.shop_owner,
+        token: shop_session.token,
+        remote_id: current_shop.id
+      )
+      create_webhooks
+    end
   end
   
+  def create_webhooks
+    ShopifyAPI::Webhook.create(topic: 'orders/create', address: "#{webhooks_url}/order/create", format: 'json')
+  end
 end

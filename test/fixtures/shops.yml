@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  domain: MyString
+  name: MyString
+  owner: MyString
+  token: MyString
+  remote_id: MyString
+
+two:
+  domain: MyString
+  name: MyString
+  owner: MyString
+  token: MyString
+  remote_id: MyString
