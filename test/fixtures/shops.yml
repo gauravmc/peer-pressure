@@ -1,15 +1,6 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  domain: MyString
-  name: MyString
-  owner: MyString
-  token: MyString
-  remote_id: MyString
-
-two:
-  domain: MyString
-  name: MyString
-  owner: MyString
-  token: MyString
-  remote_id: MyString
+gauravtesting:
+  domain: gauravtesting.myshopify.com
+  name: Torque
+  owner: Gaurav Chande
+  token: c4d48141fee20750f6b4b2d9fa09fdc5
+  remote_id: 1605628

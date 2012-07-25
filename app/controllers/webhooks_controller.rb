@@ -2,10 +2,7 @@ class WebhooksController < ApplicationController
   before_filter :verify_webhook
   
   def order_created
-    data = ActiveSupport::JSON.decode(request.body.read)
-    data['line_items'].each do |product|
-      # puts "#{product['title']} was sold just now!"
-    end
+    Product.fetch_new_products_from(decoded_request_data)
     head :ok
   end
   
@@ -17,5 +14,9 @@ class WebhooksController < ApplicationController
     digest  = OpenSSL::Digest::Digest.new('sha256')
     calculated_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, shared_secret, data)).strip
     calculated_hmac == hmac_header
+  end
+  
+  def decoded_request_data
+    ActiveSupport::JSON.decode request.body.read
   end
 end

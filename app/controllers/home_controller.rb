@@ -7,13 +7,13 @@ class HomeController < ApplicationController
   end
   
   def index
-    unless current_shop_present?
+    unless current_shop.present?
       Shop.create(
-        domain: current_shop.myshopify_domain,
-        name: current_shop.name,
-        owner: current_shop.shop_owner,
+        domain: remote_shop.myshopify_domain,
+        name: remote_shop.name,
+        owner: remote_shop.shop_owner,
         token: shop_session.token,
-        remote_id: current_shop.id
+        remote_id: remote_shop.id
       )
       create_webhooks
     end

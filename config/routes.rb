@@ -1,23 +1,18 @@
 PeerPressure::Application.routes.draw do
   match 'auth/shopify/callback' => 'login#finalize'
-
   match 'welcome'            => 'home#welcome'
-
   match 'design'             => 'home#design'
-
+  
   match 'login'              => 'login#index',        :as => :login
-
   match 'login/authenticate' => 'login#authenticate', :as => :authenticate
-
   match 'login/finalize'     => 'login#finalize',     :as => :finalize
-
   match 'login/logout'       => 'login#logout',       :as => :logout
 
-  root :to                   => 'home#index'
   
   match 'webhooks/:action', :controller => 'webhooks'
   match 'webhooks/order/create' => 'webhooks#order_created'
 
+  root :to => 'home#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
