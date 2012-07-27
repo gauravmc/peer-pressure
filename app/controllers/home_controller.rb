@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   around_filter :shopify_session, :except => 'welcome'
+  layout 'ticker_box', only: [:ticker]
   
   def welcome
     current_host = "#{request.host}#{':' + request.port.to_s if request.port != 80}"
@@ -16,6 +17,14 @@ class HomeController < ApplicationController
         remote_id: remote_shop.id
       )
       create_webhooks
+    end
+  end
+  
+  def ticker
+    if Shop.where(id: params[:id]).any?
+      @items = SoldItem.where(shop_id: params[:id]).last(5).reverse
+    else
+      head :unauthorized
     end
   end
   

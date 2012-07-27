@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= stylesheet_link_tag 'application' %>
+	<%= stylesheet_link_tag 'ticker' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="well">
+	<div class="container-fluid">
+	  <div class="row-fluid">
+	    <div id="ticker-box" class="span12">
+	      <%= yield %>
+	    </div>
+	  </div>
+	</div>
+</body>
+</html>

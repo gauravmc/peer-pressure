@@ -9,7 +9,7 @@ class WebhooksControllerTest < ActionController::TestCase
   test "order/create webhook request" do
     WebhooksController.any_instance.stubs(:decoded_request_data).returns(@order_create_data)
 
-    assert_difference 'Product.count', 2 do
+    assert_difference ['Product.count','SoldItem.count'], 2 do
       post :order_created
     end
   end

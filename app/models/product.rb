@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :img_url, :price, :remote_id, :shop_id, :title
+  attr_accessible :img_url, :remote_id, :shop_id, :title, :shop
   belongs_to :shop
   has_many :sold_items
   

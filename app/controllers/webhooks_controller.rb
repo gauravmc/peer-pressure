@@ -3,6 +3,7 @@ class WebhooksController < ApplicationController
   
   def order_created
     Product.fetch_new_products_from(decoded_request_data)
+    SoldItem.fetch_new_items_from(decoded_request_data)
     head :ok
   end
   
@@ -13,7 +14,7 @@ class WebhooksController < ApplicationController
     hmac_header = request.env['HTTP_X_SHOPIFY_HMAC_SHA256']
     digest  = OpenSSL::Digest::Digest.new('sha256')
     calculated_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, shared_secret, data)).strip
-    calculated_hmac == hmac_header
+    head :unauthorized unless calculated_hmac == hmac_header
   end
   
   def decoded_request_data

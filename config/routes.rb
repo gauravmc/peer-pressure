@@ -1,7 +1,6 @@
 PeerPressure::Application.routes.draw do
   match 'auth/shopify/callback' => 'login#finalize'
   match 'welcome'            => 'home#welcome'
-  match 'design'             => 'home#design'
   
   match 'login'              => 'login#index',        :as => :login
   match 'login/authenticate' => 'login#authenticate', :as => :authenticate
@@ -11,7 +10,16 @@ PeerPressure::Application.routes.draw do
   
   match 'webhooks/:action', :controller => 'webhooks'
   match 'webhooks/order/create' => 'webhooks#order_created'
-
+  
+  match 'ticker/:id' => 'home#ticker'
+  # resources :home, only: :index do
+  #   member do
+  #     get 'ticker'
+  #   end
+  # end
+  
+  # match 'home/:id/ticker(.:format)' => 'home#ticker', as: :ticker_home
+  
   root :to => 'home#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.

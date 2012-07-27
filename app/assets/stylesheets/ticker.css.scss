@@ -1,0 +1,39 @@
+body {
+	background:white;
+	margin:0;
+	padding:0;
+	
+	.container-fluid {
+		margin:0;
+		padding:0;
+		
+		.row-fluid {
+			margin:0;
+			padding:0;
+			
+			#ticker-box {
+				#items {
+					list-style: none;
+				}
+				.item {
+					margin-top:5px;
+					margin-bottom:5px;
+
+					.product-img {
+						width:40%;
+						height:40%;
+						margin:2px;
+						-moz-border-radius:4px;
+						-webkit-border-radius:4px;
+						border-radius:4px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.well {
+	margin:0;
+	padding:0;
+}
