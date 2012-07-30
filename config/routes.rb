@@ -2,16 +2,17 @@ PeerPressure::Application.routes.draw do
   match 'auth/shopify/callback' => 'login#finalize'
   match 'welcome'            => 'home#welcome'
   
-  match 'login'              => 'login#index',        :as => :login
-  match 'login/authenticate' => 'login#authenticate', :as => :authenticate
-  match 'login/finalize'     => 'login#finalize',     :as => :finalize
-  match 'login/logout'       => 'login#logout',       :as => :logout
+  match 'login'              => 'login#index',        as: :login
+  match 'login/authenticate' => 'login#authenticate', as: :authenticate
+  match 'login/finalize'     => 'login#finalize',     as: :finalize
+  match 'login/logout'       => 'login#logout',       as: :logout
 
   
-  match 'webhooks/:action', :controller => 'webhooks'
+  match 'webhooks/:action', controller: 'webhooks'
   match 'webhooks/order/create' => 'webhooks#order_created'
   
   match 'ticker/:id' => 'home#ticker'
+  match 'sold_items/fetch/:id', controller: 'sold_items', action: 'fetch'
   # resources :home, only: :index do
   #   member do
   #     get 'ticker'

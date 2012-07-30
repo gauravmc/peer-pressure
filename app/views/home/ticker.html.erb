@@ -1,5 +1,24 @@
-<ul id="items" class="nav nav-list">
+<ul id="items">
 	<% @items.each do |item| %>
-		<li class="item"><%= image_tag item.product.img_url, class: 'product-img' %> a <%= item.product.title %> was sold just now.</li>
+		<li>
+			<a href="<%= "http://#{item.shop.domain}/products/#{item.product.handle}" %>" target="_parent">
+				<div class="item">
+					<%= image_tag item.product.img_url %>
+					<p class="ticker-message"><%= item.message %> <i><%= time_ago_in_words item.created_at %></i> ago.</p>
+				</div>
+			</a>
+		</li>
 	<% end %>
 </ul>
+
+<%= javascript_tag do %>
+	$(document).ready(
+		function(){
+			setInterval(function(){
+				$.ajax({
+					url: '/sold_items/fetch/<%= current_shop.id %>',
+					success: function(data) { append_item_from(data); }
+				});
+			}, 5000);
+	});
+<% end %>

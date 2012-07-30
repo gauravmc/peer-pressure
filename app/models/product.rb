@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :img_url, :remote_id, :shop_id, :title, :shop
+  attr_accessible :img_url, :remote_id, :shop_id, :title, :shop, :handle
   belongs_to :shop
   has_many :sold_items
   
@@ -10,6 +10,7 @@ class Product < ActiveRecord::Base
         product = Product.new(
           remote_id: remote_product.id,
           title: remote_product.title,
+          handle: remote_product.handle,
           shop_id: ShopifyAPI::Shop.current.id
         )
         product.img_url = remote_product.images.any? ? remote_product.images.first.src : ''

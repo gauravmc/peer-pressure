@@ -12,4 +12,12 @@ class SoldItem < ActiveRecord::Base
       )
     end
   end
+  
+  def message
+    if quantity == 1
+      "a #{product.title} was sold"
+    else
+      "#{quantity} units of #{product.title} were sold"
+    end
+  end
 end
