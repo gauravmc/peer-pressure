@@ -1,5 +1,5 @@
 class WebhooksController < ApplicationController
-  before_filter :verify_webhook
+  # before_filter :verify_webhook
   
   def order_created
     Product.fetch_new_products_from(decoded_request_data)
