@@ -5,7 +5,7 @@ class CreateShops < ActiveRecord::Migration
       t.string :name
       t.string :owner
       t.string :token
-      t.string :remote_id
+      t.integer :remote_id
 
       t.timestamps
     end

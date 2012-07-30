@@ -2,7 +2,7 @@ class CreateProducts < ActiveRecord::Migration
   def change
     create_table :products do |t|
       t.string :title
-      t.decimal :price, precision: 10, scale: 2
+      t.string :handle
       t.text :img_url
       t.integer :shop_id
       t.integer :remote_id
