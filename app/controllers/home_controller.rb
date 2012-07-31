@@ -18,7 +18,6 @@ class HomeController < ApplicationController
       )
       create_webhooks
     end
-    create_webhooks
   end
   
   def ticker
