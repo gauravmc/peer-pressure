@@ -12,7 +12,13 @@ PeerPressure::Application.routes.draw do
   match 'webhooks/order/create' => 'webhooks#order_created'
   
   match 'ticker/:id' => 'home#ticker'
-  match 'sold_items/fetch/:id', controller: 'sold_items', action: 'fetch'
+  
+  resources :sold_items, only: :update do
+    member do
+      get :fetch
+    end
+  end
+    
   # resources :home, only: :index do
   #   member do
   #     get 'ticker'

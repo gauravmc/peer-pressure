@@ -1,5 +1,5 @@
 class WebhooksController < ApplicationController
-  # before_filter :verify_webhook
+  before_filter :verify_webhook
   
   def order_created
     Product.fetch_new_products_from(decoded_request_data)
@@ -14,7 +14,17 @@ class WebhooksController < ApplicationController
     hmac_header = request.env['HTTP_X_SHOPIFY_HMAC_SHA256']
     digest  = OpenSSL::Digest::Digest.new('sha256')
     calculated_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, shared_secret, data)).strip
-    head :unauthorized unless calculated_hmac == hmac_header
+    if calculated_hmac == hmac_header
+      connect
+    else
+      head :unauthorized
+    end
+  end
+  
+  def connect
+    shop = Shop.find_by_domain(request.env['HTTP_X_SHOPIFY_SHOP_DOMAIN'])
+    session = ShopifyAPI::Session.new(shop.domain, shop.token)
+    ShopifyAPI::Base.activate_session session
   end
   
   def decoded_request_data

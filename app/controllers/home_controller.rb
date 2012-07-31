@@ -18,14 +18,11 @@ class HomeController < ApplicationController
       )
       create_webhooks
     end
+    create_webhooks
   end
   
   def ticker
-    if Shop.where(id: params[:id]).any?
-      @items = SoldItem.where(shop_id: params[:id]).last(5).reverse
-    else
-      head :unauthorized
-    end
+    @items = SoldItem.where(shop_id: params[:id], status: 'pushed').last(50).reverse
   end
   
   def create_webhooks
