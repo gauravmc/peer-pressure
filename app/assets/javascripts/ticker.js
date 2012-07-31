@@ -1,11 +1,12 @@
 //= require jquery.timeago
+var offset;
 
 function append_item_from(data) {
 	var items = data.items;
 	$.each(items, function(key, item){
 		if (typeof(item.created_at) != "undefined") {
 			$(formatted_item(item)).hide().prependTo("#items").fadeIn(2000);
-			update_item(item);
+			offset += 1;
 		}
 	});
 }
@@ -21,12 +22,4 @@ function item_message(item) {
 	} else {
 		return item.quantity +" units of "+ item.product.title +" were sold";
 	}
-}
-
-function update_item(item) {
-	$.ajax({
-		url: '/sold_items/' + item.id,
-		data: { item: { status: "pushed" } },
-		type: 'PUT'
-	});
 }

@@ -41,7 +41,6 @@ yamaha = Product.create(
   SoldItem.create(
     product: product,
     shop: shop,
-    status: 'pending',
     quantity: 1
   )
 end

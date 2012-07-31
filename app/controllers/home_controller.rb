@@ -21,7 +21,9 @@ class HomeController < ApplicationController
   end
   
   def ticker
-    @items = SoldItem.where(shop_id: params[:id], status: 'pushed').last(50).reverse
+    sold_items = SoldItem.where(shop_id: params[:id])
+    @items = sold_items.last(50).reverse
+    @offset = sold_items.count
   end
   
   def create_webhooks

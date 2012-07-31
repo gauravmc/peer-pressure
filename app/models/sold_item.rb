@@ -1,5 +1,5 @@
 class SoldItem < ActiveRecord::Base
-  attr_accessible :product_id, :shop_id, :quantity, :shop, :product, :status
+  attr_accessible :product_id, :shop_id, :quantity, :shop, :product
   belongs_to :shop
   belongs_to :product
   include SessionHelper
@@ -10,7 +10,6 @@ class SoldItem < ActiveRecord::Base
       SoldItem.create(
         product_id: product.id,
         quantity: line_item['quantity'],
-        status: 'pending',
         shop_id: SessionHelper.current_shop.id
       )
     end
