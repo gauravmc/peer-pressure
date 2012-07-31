@@ -6,9 +6,9 @@ class SoldItem < ActiveRecord::Base
   
   def self.fetch_new_items_from(data)
     data['line_items'].each do |line_item|
-      remote_product = ShopifyAPI::Product.find(line_item['product_id'])
+      product = Product.find_by_remote_id(line_item['product_id'])
       SoldItem.create(
-        product_id: remote_product.id,
+        product_id: product.id,
         quantity: line_item['quantity'],
         status: 'pending',
         shop_id: SessionHelper.current_shop.id
