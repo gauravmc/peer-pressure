@@ -26,7 +26,7 @@ body {
 			li {
 				background-color:#ffffff;
 				border-bottom: 1px solid #e5e5e5;
-				padding:10px 10px;
+				padding:10px;
 								
 				.item {
 					img {
@@ -41,6 +41,8 @@ body {
 						max-width:125px;
 						display:inline-block;
 						vertical-align:middle;
+						font-smooth:always;
+						line-height:1.25em;
 					}
 				}
 			}
@@ -52,8 +54,6 @@ body {
 	margin:0;
 	padding:0;
 	background-color:#f5f5f5;
-	border:1px solid #eee;
-	border:1px solid rgba(0, 0, 0, 0.05);
 	-webkit-border-radius:4px;
 	-moz-border-radius:4px;
 	border-radius:4px;

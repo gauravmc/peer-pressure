@@ -22,7 +22,7 @@ class HomeController < ApplicationController
   
   def ticker
     sold_items = SoldItem.where(shop_id: params[:id])
-    @items = sold_items.last(50).reverse
+    @items = sold_items.last(30).reverse
     @offset = sold_items.count
   end
   

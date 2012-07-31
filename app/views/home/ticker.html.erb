@@ -15,14 +15,15 @@
 
 <%= javascript_tag do %>
 	offset = <%= @offset %>;
+	
 	$(document).ready(
 		function(){
 			setInterval(function(){
 				$.ajax({
 					url: '/sold_items/<%= current_shop.id %>/fetch/',
 					data: { offset: offset },
-					success: function(data) { append_item_from(data); }
+					success: function(data) { prepend_item_from(data); }
 				});
-		}, 10000);
+		}, 15000);
 	});
 <% end %>
