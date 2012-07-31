@@ -19,7 +19,7 @@ function item_message(item) {
 	if(item.quantity == 1) {
 		return "a "+ item.product.title +" was sold";
 	} else {
-		return item.quantity +"units of "+ item.product.title +" were sold";
+		return item.quantity +" units of "+ item.product.title +" were sold";
 	}
 }
 
