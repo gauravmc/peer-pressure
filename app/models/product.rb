@@ -21,7 +21,11 @@ class Product < ActiveRecord::Base
   end
   
   def img_url
-    '/assets/shopify-small.png' unless super.present?
+    if super.present?
+      super
+    else
+      "/assets/shopify-small.png"
+    end
   end
   
   def remote_find(id)
