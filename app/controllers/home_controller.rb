@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   end
   
   def index
-    unless current_shop.present?
+    unless Shop.find_by_remote_id(remote_shop.id)
       Shop.create(
         domain: remote_shop.myshopify_domain,
         name: remote_shop.name,
@@ -17,6 +17,7 @@ class HomeController < ApplicationController
         remote_id: remote_shop.id
       )
       create_webhooks
+      fetch_sold_items
     end
   end
   
@@ -26,7 +27,16 @@ class HomeController < ApplicationController
     @offset = sold_items.count
   end
   
+  private
+  
   def create_webhooks
     ShopifyAPI::Webhook.create(topic: 'orders/create', address: "#{webhooks_url}/order/create", format: 'json')
+  end
+  
+  def fetch_sold_items
+    orders = ShopifyAPI::Order.all.last 5
+    orders.each do |order|
+      SoldItem.fetch_from_order_json json_decode(order.to_json)
+    end
   end
 end

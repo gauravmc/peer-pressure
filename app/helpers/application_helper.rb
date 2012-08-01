@@ -14,4 +14,8 @@ module ApplicationHelper
   def remote_shop
     @remote_shop ||= ShopifyAPI::Shop.current
   end
+  
+  def json_decode(data)
+    ActiveSupport::JSON.decode data
+  end
 end

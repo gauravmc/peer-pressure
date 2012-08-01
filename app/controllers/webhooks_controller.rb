@@ -2,8 +2,8 @@ class WebhooksController < ApplicationController
   before_filter :verify_webhook
   
   def order_created
-    Product.fetch_new_products_from(decoded_request_data)
-    SoldItem.fetch_new_items_from(decoded_request_data)
+    Product.fetch_from_order_json(decoded_request_data)
+    SoldItem.fetch_from_order_json(decoded_request_data)
     head :ok
   end
   

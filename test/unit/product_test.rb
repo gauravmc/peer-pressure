@@ -7,7 +7,7 @@ class ProductTest < ActiveSupport::TestCase
   
   test "product gets saved from webhook json data" do
     assert_difference 'Product.count', 2 do
-      Product.fetch_new_products_from(@order_create_data)
+      Product.fetch_from_order_json(@order_create_data)
     end
   end
 end

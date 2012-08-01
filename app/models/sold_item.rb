@@ -2,19 +2,22 @@ class SoldItem < ActiveRecord::Base
   attr_accessible :product_id, :shop_id, :quantity, :shop, :product
   belongs_to :shop
   belongs_to :product
-  include SessionHelper
   
-  def self.fetch_new_items_from(data)
-    data['line_items'].each do |line_item|
-      product = Product.find_by_remote_id(line_item['product_id'])
+  def self.fetch_from_order_json(data)
+    debugger
+    data['line_items'].each do |item|
+      product = Product.find_by_remote_id(item['product_id'])
+      if product.nil?
+        product = Product.new.save_from_line_item(item)
+      end
       SoldItem.create(
         product_id: product.id,
-        quantity: line_item['quantity'],
-        shop_id: SessionHelper.current_shop.id
+        quantity: item['quantity'],
+        shop_id: product.shop_id
       )
     end
   end
-  
+    
   def message
     if quantity == 1
       "a #{product.title} was sold"
