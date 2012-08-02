@@ -1,0 +1,14 @@
+one:
+  shop: gauravtesting
+  product: yamaha_r6
+  quantity: 1
+  
+two:
+  shop: gauravtesting
+  product: yamaha_r6
+  quantity: 2
+
+three:
+  shop: gauravtesting
+  product: ducati_848
+  quantity: 1  

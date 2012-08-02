@@ -17,13 +17,13 @@ class HomeController < ApplicationController
         remote_id: remote_shop.id
       )
       create_webhooks
-      fetch_sold_items
     end
+    fetch_sold_items unless current_shop.sold_items.any?
   end
   
   def ticker
-    sold_items = SoldItem.where(shop_id: params[:id])
-    @items = sold_items.last(30).reverse
+    sold_items = SoldItem.order('created_at DESC').where(shop_id: params[:id])
+    @items = sold_items.last(30)
     @offset = sold_items.count
   end
   
@@ -34,7 +34,7 @@ class HomeController < ApplicationController
   end
   
   def fetch_sold_items
-    orders = ShopifyAPI::Order.all.last 5
+    orders = ShopifyAPI::Order.all.first 5
     orders.each do |order|
       SoldItem.fetch_from_order_json json_decode(order.to_json)
     end

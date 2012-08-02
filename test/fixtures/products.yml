@@ -1,0 +1,13 @@
+yamaha_r6:
+  title: 'Yamaha R6'
+  handle: 'yamaha-r6'
+  img_url: 'http://cdn.shopify.com/s/files/1/0160/5628/products/r6.jpeg?318'
+  shop: gauravtesting
+  remote_id: 1234
+  
+ducati_848:
+  title: 'Ducati 848 Evo'
+  handle: 'ducati-848-evo'
+  img_url: 'http://cdn.shopify.com/s/files/1/0160/5628/products/SBK-848evo_2011_Studio_W_O01S_1620x10803-2.mediagallery_output_image_1920x1080.png?318'
+  shop: gauravtesting
+  remote_id: 1234

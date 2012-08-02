@@ -11,13 +11,18 @@ class ActiveSupport::TestCase
   fixtures :all
   
   def setup
-    session = ShopifyAPI::Session.new('gauravtesting.myshopify.com', 'c4d48141fee20750f6b4b2d9fa09fdc5')
-    ShopifyAPI::Base.activate_session session
+    sess = ShopifyAPI::Session.new('gauravtesting.myshopify.com', 'c4d48141fee20750f6b4b2d9fa09fdc5')
+    session[:shopify] = sess if defined? session
+    ShopifyAPI::Base.activate_session sess
   end
 
   # Add more helper methods to be used by all tests here...
   
   def load_json(filename)
     JSON.parse File.read(Rails.root.join('test/fixtures/json', filename))
+  end
+  
+  def response_body
+    JSON.parse response.body
   end
 end
