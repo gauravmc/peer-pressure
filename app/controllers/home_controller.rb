@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-  around_filter :shopify_session, :except => 'welcome'
-  layout 'ticker_box', only: [:ticker]
+  around_filter :shopify_session, except: [:welcome, :feedbox]
+  layout 'box', only: [:feedbox]
   
   def welcome
     current_host = "#{request.host}#{':' + request.port.to_s if request.port != 80}"
@@ -17,14 +17,17 @@ class HomeController < ApplicationController
         remote_id: remote_shop.id
       )
       create_webhooks
+      current_shop.create_feedbox
     end
     fetch_sold_items unless current_shop.sold_items.any?
   end
   
-  def ticker
+  def feedbox
     sold_items = SoldItem.order('created_at DESC').where(shop_id: params[:id])
     @items = sold_items.last(30)
     @offset = sold_items.count
+    @shop = Shop.find(params[:id])
+    @feedbox = @shop.feedbox
   end
   
   private

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<%= stylesheet_link_tag 'feedbox' %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'feedbox' %>
+  <%= csrf_meta_tags %>
+	<style>
+		body.well {
+			background-color:<%= @feedbox.box_background %>;
+		}
+		body #feedbox-container #feedbox-box li {
+			background-color:<%= @feedbox.item_background %>;
+			border-bottom: 1px solid <%= @feedbox.item_border %>;
+		}
+	</style>
+</head>
+<body class="well">
+  <div id="feedbox-container">
+		<div id="feedbox-box" class="span12 well">
+     <%= yield %>
+		</div>
+  </div>
+</body>
+</html>

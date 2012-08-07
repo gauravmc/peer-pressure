@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="span3 offset1">
+		<h2>Your Feed Box</h2><br/>
+		<%= feedbox_code.html_safe %><br/><br/>
+  </div>
+	<div class="span7">
+		<h2>Color Options</h2><br/>
+		<div>
+			<%= form_for @feedbox, html: {id: 'customize-form', class: 'form-horizontal well'} do |f| %>
+				<table rowspan='2'>
+				  <tr>
+						<td><%= f.label :item_background, 'Item Background:' %></td>
+					  <td><%= f.text_field :item_background, class: 'span1' %></td>
+					</tr>
+					<tr>
+						<td><%= f.label :item_border, 'Item Border:' %></td>
+					  <td><%= f.text_field :item_border, class: 'span1' %></td>
+					</tr>
+					<tr>
+						<td><%= f.label :box_background, 'Box Background:' %></td>
+					  <td><%= f.text_field :box_background, class: 'span1' %></td>
+					</tr>
+					<tr>
+						<td><%= f.label :box_border, 'Box Border:' %></td>
+					  <td><%= f.text_field :box_border, class: 'span1' %></td>
+					</tr>
+					<tr>
+						<td></td>
+					  <td><%= f.submit 'Update', class: 'btn' %></td>
+					</tr>
+				</table>
+			<% end %>
+		</div>
+		<div><br/>
+			<h3>Grab the code:</h3>
+			<%= pygmented_code('html', feedbox_code).html_safe %>
+		</div>
+		<div>
+			<p>All you have to do is copy this piece of code and paste it where you want the feed-box to appear. No configurations or settings required.</p>
+		</div>
+	</div>
+</div>

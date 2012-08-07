@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  shop: gauravtesting
+  item_background: '#ffffff'
+  item_border: '#111222'
+  box_background: '#dd6d55'
+  box_border: '#d6d6d6'

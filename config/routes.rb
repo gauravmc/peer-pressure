@@ -11,7 +11,7 @@ PeerPressure::Application.routes.draw do
   match 'webhooks/:action', controller: 'webhooks'
   match 'webhooks/order/create' => 'webhooks#order_created'
   
-  match 'ticker/:id' => 'home#ticker'
+  match 'feedbox/:id' => 'home#feedbox'
   
   resources :sold_items, only: :update do
     member do
@@ -19,14 +19,7 @@ PeerPressure::Application.routes.draw do
     end
   end
     
-  # resources :home, only: :index do
-  #   member do
-  #     get 'ticker'
-  #   end
-  # end
-  
-  # match 'home/:id/ticker(.:format)' => 'home#ticker', as: :ticker_home
-  
+  resources :feedboxes, only: [:edit, :update]  
   root :to => 'home#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.

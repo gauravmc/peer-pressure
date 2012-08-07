@@ -5,7 +5,7 @@
 				<a href="<%= "http://#{item.shop.domain}/products/#{item.product.handle}" %>" target="_parent">
 					<div class="item">
 						<%= image_tag item.product.img_url %>
-						<p class="ticker-message"><%= item.message %> <i><%= time_ago_in_words item.created_at %></i> ago.</p>
+						<p class="feedbox-message"><%= item.message %> <i><%= time_ago_in_words item.created_at %></i> ago.</p>
 					</div>
 				</a>
 			</li>
@@ -19,7 +19,7 @@
 	$(function() {
 			setInterval(function(){
 				$.ajax({
-					url: '/sold_items/<%= current_shop.id %>/fetch/',
+					url: '/sold_items/<%= @shop.id %>/fetch/',
 					data: { offset: offset },
 					success: function(data) { prepend_item_from(data); }
 				});

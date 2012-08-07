@@ -1,19 +1,23 @@
 <div class="row">
   <div class="span3 offset1">
-		<h2>Your Ticker Box</h2><br/>
-		<iframe src="<%= root_url %>ticker/<%= current_shop.id %>" height="300px" width="220px" style="overflow:scroll; margin: 0; padding: 0; border:1px solid rgba(0, 0, 0, 0.2); -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;"></iframe>
+		<h2>Your Feed Box</h2><br/>
+		<%= feedbox_code.html_safe %><br/><br/>
+		<%= link_to 'Customize', edit_feedbox_path(current_shop.feedbox), class: 'btn btn-info', id: 'customize-button' %>
   </div>
 	<div class="span7">
 		<h2>Description</h2><br/>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ornare elit tempus est semper a ullamcorper lorem sodales. Ut eget risus ac tellus fringilla suscipit sit amet nec leo. Vestibulum consectetur, lorem id vehicula dictum, neque lorem cursus arcu, sit amet varius mi ligula in quam. Duis a est in justo mattis vehicula et dictum ante. Donec fringilla sagittis porta. Nunc placerat augue at risus bibendum nec pulvinar dui malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
-		<p>Duis elit lectus, vestibulum vel viverra non, tincidunt eget neque. Donec vitae risus est, sed feugiat augue. Nam varius nulla vel nulla tincidunt quis porttitor ligula cursus. Proin consequat, lacus ac placerat interdum, justo odio sagittis ligula, vel porta nisl metus sodales magna. Fusce fringilla sagittis lobortis. Quisque dignissim gravida lacus id dignissim. Maecenas vehicula, purus nec interdum molestie, ante risus fringilla orci, sit amet malesuada tortor massa vel purus.</p>
-		<p>In hac habitasse platea dictumst. Pellentesque diam ipsum, vestibulum id rhoncus nec, ultrices porta lectus. Sed metus est, scelerisque mollis porta non, adipiscing quis magna. Cras est quam, aliquam vel bibendum non, lobortis vel orci. Vivamus et magna nibh, a commodo nisi. Nunc condimentum venenatis venenatis. Praesent eleifend sollicitudin leo, at faucibus nisl venenatis eget. Sed est turpis, cursus id semper ornare, pellentesque sit amet odio. Praesent quis metus enim, vitae placerat neque. Quisque eget nisi non ante sodales eleifend vel quis neque. Nullam at erat ac velit condimentum malesuada. Maecenas sagittis magna at tortor vestibulum eu sagittis felis rhoncus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla ullamcorper erat eu turpis aliquam elementum. Fusce ac velit sed augue suscipit sagittis. Donec quis elementum mi.</p>
-		<!-- Human beings are amusingly weird. Here's an example: http://www.youtube.com/watch?v=ltaUpq_26Us
-
-		This concept is a reason behind most things most people do: Peer Pressure. Why not take advantage of this behavior and use it to drive more sales to an online shop? Currently, online shops are trying to achieve this through things like product reviews, best sellers list, etc. A lil more research would bring you to this http://blog.washingtonpost.com/posttech/2008/07/peer_pressure_in_online_shoppi.html
-
-		I've tried to rethink this and here's the idea: What if every shop has a live ticker? A ticker which flashes the most recently sold items, every time something sells. Like a live update. A small box that sits somewhere, is visible throughout and keeps updating.
-
-		Simply put, imagine you're looking to buy a toy in angry birds shop, and while you're at it, there were three live updates in a row for this cool hat being sold: http://bit.ly/MJC0Yh There is a good chance you'll click it and wanna buy, isn't it? -->
+		<div>
+		<p>Peer Pressure, as defined in Wikipedia, is something that encourages individuals to change their attitudes, values, or behaviors in order to conform to group norms. This concept is a reason behind most things most people do.</p>
+		<p>This app takes the advantage of this human behavior to drive more sales to your Shopify shop. Peer Pressure box is basically a live feed widget. A ticker which slides in the most recently sold items in your shop, every time something sells. Like a live update. It's a small box that sits anywhere, on as many pages as you want, and it keeps updating. All the time.</p>
+		<p>How is this driving more sales? Well, imagine a visitor is checking out your Shopify store. While he's at it, there are a few live updates in a row for some popular item being sold. There is a good chance he'll click it and wanna buy, isn't it?</p>
+		<p>It's going to up your sales. Believe it or not.</p>
+		</div>
+		<div><br/>
+			<h3>Grab the code:</h3>
+			<%= pygmented_code('html', feedbox_code).html_safe %>
+		</div>
+		<div>
+			<p>All you have to do is copy this piece of code and paste it where you want the feed-box to appear. No configurations or settings required.</p>
+		</div>
 	</div>
 </div>

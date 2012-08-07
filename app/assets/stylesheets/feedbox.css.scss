@@ -4,11 +4,11 @@ body {
 	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-size:11px;
 	
-	#ticker-container {
+	#feedbox-container {
 		margin:0;
 		padding:0;
-		
-		#ticker-box {
+				
+		#feedbox-box {
 			#items {
 				list-style: none;
 				margin:0;
@@ -25,7 +25,10 @@ body {
 			
 			li {
 				background-color:#ffffff;
-				border-bottom: 1px solid #e5e5e5;
+				border-bottom: 1px solid #d0d0d0;
+				-webkit-box-shadow:0 -1px 1px rgba(0, 0, 0, 0.05);
+				-moz-box-shadow:0 -1px 1px rgba(0, 0, 0, 0.05);
+				box-shadow:0 -1px 1px rgba(0, 0, 0, 0.05);
 				padding:10px;
 								
 				.item {
@@ -37,7 +40,7 @@ body {
 						vertical-align:middle;
 					}
 			
-					.ticker-message {
+					.feedbox-message {
 						max-width:125px;
 						display:inline-block;
 						vertical-align:middle;
