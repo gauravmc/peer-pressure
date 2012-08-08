@@ -1,5 +1,6 @@
 PeerPressure::Application.routes.draw do
   match 'auth/shopify/callback' => 'login#finalize'
+  match 'auth/failure' => 'login#failure'
   match 'welcome'            => 'home#welcome'
   
   match 'login'              => 'login#index',        as: :login

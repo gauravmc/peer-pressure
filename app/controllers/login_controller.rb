@@ -26,6 +26,10 @@ class LoginController < ApplicationController
     end
   end
   
+  def failure
+    redirect_to return_address
+  end
+  
   def logout
     session[:shopify] = nil
     flash[:notice] = "Successfully logged out."
