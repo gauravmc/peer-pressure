@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.8'
 gem 'less-rails-bootstrap'
 gem 'debugger'
 gem 'thin'
 gem 'jquery-rails'
-gem 'shopify_app', :git => 'git://github.com/gauravmc/shopify_app.git'
+gem 'shopify_app'
 
 group :development, :test do
   gem 'mysql2'

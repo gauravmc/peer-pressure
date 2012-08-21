@@ -16,9 +16,9 @@ class HomeController < ApplicationController
         token: shop_session.token,
         remote_id: remote_shop.id
       )
-      create_webhooks
       current_shop.create_feedbox
     end
+    create_webhooks
     fetch_sold_items unless current_shop.sold_items.any?
   end
   
@@ -33,7 +33,7 @@ class HomeController < ApplicationController
   private
   
   def create_webhooks
-    ShopifyAPI::Webhook.create(topic: 'orders/create', address: "#{webhooks_url}/order/create", format: 'json')
+    ShopifyAPI::Webhook.create(topic: 'orders/create', address: "#{webhooks_url}/order/create", format: 'json') unless current_shop.webhook_exists?('orders/create')
   end
   
   def fetch_sold_items

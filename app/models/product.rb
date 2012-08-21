@@ -6,9 +6,7 @@ class Product < ActiveRecord::Base
   
   def self.fetch_from_order_json(data)
     data['line_items'].each do |item|
-      unless Product.find_by_remote_id(item['product_id'])
-        Product.new.save_from_line_item(item)
-      end
+      Product.find_by_remote_id(item['product_id']) || Product.new.save_from_line_item(item)
     end
   end
   
@@ -25,11 +23,7 @@ class Product < ActiveRecord::Base
   end
   
   def img_url
-    if super.present?
-      super
-    else
-      "/assets/shopify-small.png"
-    end
+    super.present? ? super : "/assets/shopify-small.png"
   end
   
   def remote_find(id)
