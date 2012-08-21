@@ -11,6 +11,7 @@ PeerPressure::Application.routes.draw do
   
   match 'webhooks/:action', controller: 'webhooks'
   match 'webhooks/order/create' => 'webhooks#order_created'
+  match 'webhooks/app/uninstalled' => 'webhooks#app_uninstalled'
   
   match 'feedbox/:id' => 'home#feedbox'
   

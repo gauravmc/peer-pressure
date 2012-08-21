@@ -34,6 +34,7 @@ class HomeController < ApplicationController
   
   def create_webhooks
     ShopifyAPI::Webhook.create(topic: 'orders/create', address: "#{webhooks_url}/order/create", format: 'json') unless current_shop.webhook_exists?('orders/create')
+    ShopifyAPI::Webhook.create(topic: 'app/uninstalled', address: "#{webhooks_url}/app/uninstalled", format: 'json') unless current_shop.webhook_exists?('app/uninstalled')
   end
   
   def fetch_sold_items

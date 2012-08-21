@@ -7,6 +7,12 @@ class WebhooksController < ApplicationController
     head :ok
   end
   
+  def app_uninstalled
+    shop = Shop.find_by_remote_id(decoded_request_data['id'])
+    shop.destroy
+    head :ok
+  end
+  
   private
   
   def verify_webhook
