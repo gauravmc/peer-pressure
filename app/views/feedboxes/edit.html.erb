@@ -4,33 +4,92 @@
 		<%= feedbox_code.html_safe %><br/><br/>
   </div>
 	<div class="span7">
-		<h2>Color Options</h2><br/>
-		<div>
-			<%= form_for @feedbox, html: {id: 'customize-form', class: 'form-horizontal well'} do |f| %>
-				<table rowspan='2'>
-				  <tr>
-						<td><%= f.label :item_background, 'Item Background:' %></td>
-					  <td><%= f.text_field :item_background, class: 'span1' %></td>
-					</tr>
-					<tr>
-						<td><%= f.label :item_border, 'Item Border:' %></td>
-					  <td><%= f.text_field :item_border, class: 'span1' %></td>
-					</tr>
-					<tr>
-						<td><%= f.label :box_background, 'Box Background:' %></td>
-					  <td><%= f.text_field :box_background, class: 'span1' %></td>
-					</tr>
-					<tr>
-						<td><%= f.label :box_border, 'Box Border:' %></td>
-					  <td><%= f.text_field :box_border, class: 'span1' %></td>
-					</tr>
-					<tr>
-						<td></td>
-					  <td><%= f.submit 'Update', class: 'btn' %></td>
-					</tr>
-				</table>
+		<h2>Customize</h2><br/>
+			<%= form_for @feedbox, html: {id: 'customize-form', class: 'form-horizontal'} do |f| %>
+				<div class="tabbable tabs-right">
+		      <ul class="nav nav-tabs">
+		        <li class="active"><a href="#A" data-toggle="tab">Effects</a></li>
+		        <li><a href="#B" data-toggle="tab">Colors</a></li>
+		        <li><a href="#C" data-toggle="tab">Sizes</a></li>
+		      </ul>
+		      <div class="tab-content">
+		        <div class="tab-pane active" id="A">
+							<div class="control-group">
+								<%= f.label :scrollbar, 'Show Scrollbar:', class: 'control-label' %>
+								<div class="controls">
+									<%= f.check_box :scrollbar %>
+								</div>
+							</div>
+							<div class="control-group">
+								<%= f.label :shadow, 'Shadow Effect:', class: 'control-label' %>
+								<div class="controls">
+									<%= f.check_box :shadow %>
+								</div>
+							</div>
+		        </div>
+		        <div class="tab-pane" id="B">
+							<div class="control-group">
+								<%= f.label :item_background, 'Item Background:', class: 'control-label' %>
+								<div class="controls">
+							  	<%= f.text_field :item_background, class: 'span1 color {hash:true}' %>
+								</div>
+							</div>
+							<div class="control-group">
+								<%= f.label :item_border, 'Item Border:', class: 'control-label' %>
+								<div class="controls">
+							  <%= f.text_field :item_border, class: 'span1 color {hash:true}' %>
+								</div>
+							</div>
+							<div class="control-group">
+								<%= f.label :box_background, 'Box Background:', class: 'control-label' %>
+								<div class="controls">
+							  <%= f.text_field :box_background, class: 'span1 color {hash:true}' %>
+								</div>
+							</div>
+							<div class="control-group">
+								<%= f.label :box_border, 'Box Border:', class: 'control-label' %>
+								<div class="controls">
+							  <%= f.text_field :box_border, class: 'span1 color {hash:true}' %>								
+								</div>
+							</div>
+		        </div>
+		        <div class="tab-pane" id="C">
+							<div class="control-group">
+								<%= f.label :font_size, 'Font Size:', class: 'control-label' %>
+								<div class="controls">
+									<div id="font_size_slider" class="slider"></div>
+									<%= f.text_field :font_size, class: 'slider-input', readonly: 'readonly' %>
+								</div>
+							</div>
+							<div class="control-group" class="slider">
+								<%= f.label :image_size, 'Image Size:', class: 'control-label' %>
+								<div class="controls">
+									<div id="image_size_slider" class="slider"></div>
+									<%= f.text_field :image_size, class: 'slider-input', readonly: 'readonly' %>
+								</div>
+							</div>
+							<div class="control-group" class="slider">
+								<%= f.label :box_width, 'Box Width:', class: 'control-label' %>
+								<div class="controls">
+									<div id="box_width_slider" class="slider"></div>
+									<%= f.text_field :box_width, class: 'slider-input', readonly: 'readonly' %>
+								</div>
+							</div>
+							<div class="control-group">
+								<%= f.label :box_height, 'Box Height:', class: 'control-label' %>
+								<div class="controls">
+									<div id="box_height_slider" class="slider"></div>
+									<%= f.text_field :box_height, class: 'slider-input', readonly: 'readonly' %>
+								</div>
+							</div>
+		        </div>
+		      </div>
+		    </div> <!-- /tabbable -->
+				<div class="form-actions">
+					<%= f.submit 'Update', class: 'btn btn-primary' %>
+					<%= link_to 'Reset to default', reset_feedbox_path(@feedbox), class: 'btn', method: :put %>
+				</div>
 			<% end %>
-		</div>
 		<div><br/>
 			<h3>Grab the code:</h3>
 			<%= pygmented_code('html', feedbox_code).html_safe %>
@@ -40,3 +99,27 @@
 		</div>
 	</div>
 </div>
+
+<%= javascript_tag do %>
+$(function() {
+	$(':checkbox').iphoneStyle();
+  
+	var sizes = <%= Feedbox::SIZES.to_json.html_safe %>;
+	
+	$(".slider").each(function(){
+		var type = $(this).attr('id').replace('_slider','');
+		var field = $(this).next();
+		
+		$(this).slider({
+			value: parseInt(field.val()),
+			min: parseInt(sizes[type]['min']),
+			max: parseInt(sizes[type]['max']),
+			slide: function(event, ui) {
+				field.val(ui.value + sizes[type]['unit']);
+			}
+		});
+		
+		field.val($(this).slider("option", "value") + sizes[type]['unit']);
+	});
+});
+<% end %>

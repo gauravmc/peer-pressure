@@ -10,4 +10,10 @@ class FeedboxesController < ApplicationController
     @feedbox.update_attributes(params[:feedbox])
     redirect_to edit_feedbox_path(@feedbox)
   end
+  
+  def reset
+    @feedbox = Feedbox.find(params[:id])
+    @feedbox.reset!
+    redirect_to edit_feedbox_path(@feedbox)
+  end
 end

@@ -1,0 +1,23 @@
+#customize-button {
+	padding:6px 81px;
+	font-size:16px;
+}
+
+#customize-form {
+	width: 450px;
+	.slider {
+		margin-top:8px;
+		margin-right:8px;
+		width:70px;
+		display:inline-block;
+	}
+	.slider-input {
+		vertical-align:top;
+		width:40px;
+	}
+	.tabbable {
+		.tab-content {
+			min-height:200px;
+		}
+	}
+}

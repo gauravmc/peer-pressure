@@ -12,4 +12,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require_tree .
+//= require ios-checkboxes
+//= require_tree ../../../vendor/assets/javascripts

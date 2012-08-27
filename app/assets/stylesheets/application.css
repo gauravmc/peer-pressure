@@ -8,17 +8,7 @@
  *= require shopify_app_buttons
  *= require pygments
  *= require shopify_app
+ *= require feedboxes
+ *= require ios-checkboxes
+ *= require_tree ../../../vendor/assets/stylesheets
 */
-
-#customize-button {
-	padding:6px 81px;
-	font-size:16px;
-}
-
-#customize-form table {
-	height:200px;
-	width:200px;
-}
-
-#customize-form table td {
-}

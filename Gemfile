@@ -6,6 +6,7 @@ gem 'debugger'
 gem 'thin'
 gem 'jquery-rails'
 gem 'shopify_app'
+gem 'ios-checkboxes'
 
 group :development, :test do
   gem 'mysql2'

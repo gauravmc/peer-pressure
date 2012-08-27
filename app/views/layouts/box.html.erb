@@ -2,16 +2,23 @@
 <html lang="en">
 <head>
 	<%= stylesheet_link_tag 'feedbox' %>
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'jquery' %>
   <%= javascript_include_tag 'feedbox' %>
   <%= csrf_meta_tags %>
 	<style>
+		body {
+			font-size:<%= @feedbox.font_size %>;
+		}
 		body.well {
 			background-color:<%= @feedbox.box_background %>;
 		}
 		body #feedbox-container #feedbox-box li {
 			background-color:<%= @feedbox.item_background %>;
 			border-bottom: 1px solid <%= @feedbox.item_border %>;
+		}
+		body #feedbox-container #feedbox-box li .item img {
+			width:<%= @feedbox.image_size %>;
+			height:<%= @feedbox.image_size %>;
 		}
 	</style>
 </head>

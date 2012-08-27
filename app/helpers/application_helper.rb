@@ -24,6 +24,6 @@ module ApplicationHelper
   end
   
   def feedbox_code
-    "<iframe src='#{root_url}feedbox/#{current_shop.id}' height='300px' width='240px' style='overflow-y:scroll; margin:0; padding:0; border:1px solid #{current_shop.feedbox.box_border};'></iframe>"
+    "<iframe src='#{root_url}feedbox/#{current_shop.id}' height='#{current_shop.feedbox.box_height}' width='#{current_shop.feedbox.box_width}' scrolling='#{current_shop.feedbox.scrollbar_css}' style='overflow-y:scroll; margin:0; padding:0; border:1px solid #{current_shop.feedbox.box_border}; #{current_shop.feedbox.shadow_css}'></iframe>"
   end
 end

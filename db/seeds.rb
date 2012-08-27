@@ -44,3 +44,5 @@ yamaha = Product.create(
     quantity: 1
   )
 end
+
+shop.create_feedbox
