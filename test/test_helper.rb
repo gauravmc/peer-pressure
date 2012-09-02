@@ -11,7 +11,7 @@ class ActiveSupport::TestCase
   fixtures :all
   
   def setup
-    sess = ShopifyAPI::Session.new('gauravtesting.myshopify.com', '6572570ffc712ed1fcb0762545f1a632')
+    sess = ShopifyAPI::Session.new('gauravtesting.myshopify.com', '8c38fbb9373c9cc4179ff7fd687ecfdb')
     session[:shopify] = sess if defined? session
     ShopifyAPI::Base.activate_session sess
   end

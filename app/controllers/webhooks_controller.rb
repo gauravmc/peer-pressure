@@ -34,6 +34,6 @@ class WebhooksController < ApplicationController
   end
   
   def decoded_request_data
-    ActiveSupport::JSON.decode request.body.read
+    ActiveSupport::JSON.decode request.raw_post
   end
 end

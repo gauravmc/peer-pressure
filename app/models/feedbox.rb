@@ -4,11 +4,15 @@ class Feedbox < ActiveRecord::Base
   belongs_to :shop
   
   SIZES = {
-    font_size: {min: '11', max: '20', unit: 'px'},
+    font_size: {min: '10', max: '20', unit: 'px'},
     image_size: {min: '30', max: '50', unit: '%'},
     box_width: {min: '200', max: '300', unit: 'px'},
     box_height: {min: '250', max: '350', unit: 'px'},
   }
+  
+  def code
+    "<iframe src='http://peerpressure.herokuapp.com/feedbox/#{shop.id}' height='#{box_height}' width='#{box_width}' scrolling='#{scrollbar_css}' style='overflow-y:scroll; margin:0; padding:0; border:1px solid #{box_border}; #{shadow_css}'></iframe>"
+  end
   
   def scrollbar_css
     scrollbar? ? 'yes' : 'no'  
@@ -23,10 +27,10 @@ class Feedbox < ActiveRecord::Base
   end
     
   def reset
-    self.box_background = '#f5f5f5'
-    self.box_border = '#d0d0d0'
-    self.item_background = '#ffffff'
-    self.item_border = '#d0d0d0'
+    self.box_background = '#F5F5F5'
+    self.box_border = '#D0D0D0'
+    self.item_background = '#FFFFFF'
+    self.item_border = '#D0D0D0'
     self.font_size = '11px'
     self.image_size = '30%'
     self.box_width = '240px'

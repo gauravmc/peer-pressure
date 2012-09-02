@@ -21,7 +21,7 @@ function prepend_item_from(data) {
 }
 
 function formatted_item(item) {
-	var code = '<li><a href="http://'+item.shop.domain+'/products/'+item.product.handle+'"><div class="item"><img src="'+item.product.img_url+'" /><p class="feedbox-message">'+item_message(item)+' <i>'+$.timeago(item.created_at)+'</i> ago.</p></div></a></li>';
+	var code = '<li><a href="http://'+item.shop.domain+'/products/'+item.product.handle+'" target="_parent"><div class="item"><img src="'+item.product.img_url+'" /><p class="feedbox-message">'+item_message(item)+' <i>'+$.timeago(item.created_at)+'</i> ago.</p></div></a></li>';
 	return code;
 }
 

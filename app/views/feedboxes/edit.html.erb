@@ -92,7 +92,7 @@
 			<% end %>
 		<div><br/>
 			<h3>Grab the code:</h3>
-			<%= pygmented_code('html', feedbox_code).html_safe %>
+			<%= pygmented_code('html', current_shop.feedbox.code).html_safe %>
 		</div>
 		<div>
 			<p>All you have to do is copy this piece of code and paste it where you want the feed-box to appear. No configurations or settings required.</p>
@@ -107,19 +107,19 @@ $(function() {
 	var sizes = <%= Feedbox::SIZES.to_json.html_safe %>;
 	
 	$(".slider").each(function(){
-		var type = $(this).attr('id').replace('_slider','');
+		var attribute = $(this).attr('id').replace('_slider','');
 		var field = $(this).next();
 		
 		$(this).slider({
 			value: parseInt(field.val()),
-			min: parseInt(sizes[type]['min']),
-			max: parseInt(sizes[type]['max']),
+			min: parseInt(sizes[attribute]['min']),
+			max: parseInt(sizes[attribute]['max']),
 			slide: function(event, ui) {
-				field.val(ui.value + sizes[type]['unit']);
+				field.val(ui.value + sizes[attribute]['unit']);
 			}
 		});
 		
-		field.val($(this).slider("option", "value") + sizes[type]['unit']);
+		field.val($(this).slider("option", "value") + sizes[attribute]['unit']);
 	});
 });
 <% end %>

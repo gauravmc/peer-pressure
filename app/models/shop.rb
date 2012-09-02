@@ -4,6 +4,8 @@ class Shop < ActiveRecord::Base
   has_many :sold_items, dependent: :destroy
   has_one :feedbox, dependent: :destroy
   
+  default_scope where('remote_id IS NOT NULL')
+  
   def webhook_exists?(topic)
     return true unless ShopifyAPI::Webhook.find(:all, params: { topic: topic }).empty?
   end
