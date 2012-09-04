@@ -88,14 +88,14 @@
 				<div class="form-actions">
 					<%= f.submit 'Update', class: 'btn btn-primary' %>
 					<%= link_to 'Reset to default', reset_feedbox_path(@feedbox), class: 'btn', method: :put %>
-				</div>
+				</div><br/>
 			<% end %>
-		<div><br/>
-			<h3>Grab the code:</h3>
-			<%= pygmented_code('html', current_shop.feedbox.code).html_safe %>
-		</div>
 		<div>
-			<p>All you have to do is copy this piece of code and paste it where you want the feed-box to appear. No configurations or settings required.</p>
+			<h3>Grab the code:</h3><br/>
+			<code><%= "{% include 'peerpressure' %}" %></code>
+		</div><br/>
+		<div>
+			<p>All you have to do is copy this piece of code and paste it where you want the feed-box to appear. No configurations or settings required. Just simple one line of code.</p>
 		</div>
 	</div>
 </div>

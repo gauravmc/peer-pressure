@@ -45,10 +45,15 @@ class Feedbox < ActiveRecord::Base
   end
 
   before_save :load_default_values
+  after_save :update_asset
 
   private
   
   def load_default_values
     reset if new_record?
+  end
+  
+  def update_asset
+    ShopifyAPI::Asset.create(key: 'snippets/peerpressure.liquid', value: code)
   end
 end

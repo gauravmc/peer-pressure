@@ -18,11 +18,7 @@ module ApplicationHelper
   def json_decode(data)
     ActiveSupport::JSON.decode data
   end
-  
-  def pygmented_code(language, code)
-    Net::HTTP.post_form(URI.parse('http://pygments.appspot.com/'), {'lang'=>language, 'code'=>code}).body
-  end
-  
+    
   def feedbox_code
     "<iframe src='#{root_url}feedbox/#{current_shop.id}' height='#{current_shop.feedbox.box_height}' width='#{current_shop.feedbox.box_width}' scrolling='#{current_shop.feedbox.scrollbar_css}' style='overflow-y:scroll; margin:0; padding:0; border:1px solid #{current_shop.feedbox.box_border}; #{current_shop.feedbox.shadow_css}'></iframe>"
   end
