@@ -5,7 +5,7 @@ class Feedbox < ActiveRecord::Base
   
   SIZES = {
     font_size: {min: '10', max: '20', unit: 'px'},
-    image_size: {min: '30', max: '50', unit: '%'},
+    image_size: {min: '25', max: '50', unit: '%'},
     box_width: {min: '200', max: '300', unit: 'px'},
     box_height: {min: '250', max: '350', unit: 'px'},
   }
