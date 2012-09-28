@@ -1,13 +1,12 @@
 PeerPressure::Application.routes.draw do
-  match 'auth/shopify/callback' => 'login#finalize'
-  match 'auth/failure' => 'login#failure'
   match 'welcome'            => 'home#welcome'
-  
-  match 'login'              => 'login#index',        as: :login
-  match 'login/authenticate' => 'login#authenticate', as: :authenticate
-  match 'login/finalize'     => 'login#finalize',     as: :finalize
-  match 'login/logout'       => 'login#logout',       as: :logout
 
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    get 'auth/shopify/callback' => :show
+    delete 'logout' => :destroy
+  end
   
   match 'webhooks/:action', controller: 'webhooks'
   match 'webhooks/order/create' => 'webhooks#order_created'

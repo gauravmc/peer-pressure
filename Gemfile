@@ -5,7 +5,7 @@ gem 'less-rails-bootstrap'
 gem 'debugger'
 gem 'thin'
 gem 'jquery-rails'
-gem 'shopify_app', git: 'git://github.com/gauravmc/shopify_app.git', ref: '98c78f1'
+gem 'shopify_app'
 gem 'ios-checkboxes'
 
 group :development, :test do
